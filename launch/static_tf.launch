@@ -1,0 +1,13 @@
+<launch>
+    <!-- <node pkg="tf" type="static_transform_publisher" name="static_tf" args="0.2 -0.3 0.1 0 0 0 map robot 10" /> -->
+    <node pkg="tf" type="static_transform_publisher" name="static_tf" args="0.2 -0.3 0.1 0 0 0 map odom 10" />
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="static_tf1" args="0.3  0.0 0.1 0 0 0 map robot 10" />
+    <node pkg="tf" type="static_transform_publisher" name="static_tf2" args="0.2  0.0 0.1 0 0 0 robot sensor 10" />
+    <node pkg="tf" type="static_transform_publisher" name="static_tf3" args="0.0 -0.3 -0.1 0 0 0 robot wheel_right 10" />
+    <node pkg="tf" type="static_transform_publisher" name="static_tf4" args="0.0  0.3 -0.1 0 0 0 robot wheel_left 10" /> -->
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="static_tf1" args="0.2 -0.3 0.1 0 0 0 map robot1 10" />
+    <node pkg="tf" type="static_transform_publisher" name="static_tf2" args="0.2  0.0 0.1 0 0 0 map robot2 10" />
+    <node pkg="tf" type="static_transform_publisher" name="static_tf3" args="0.2  0.3 0.1 0 0 0 map robot3 10" /> -->
+</launch>
