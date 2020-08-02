@@ -22,7 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
 
 #インクルード
 catkin_package(
-  INCLUDE_DIRS
+  INCLUDE_DIRS include
   LIBRARIES ppdr_tf_tools
   CATKIN_DEPENDS roscpp std_msgs tf tf2
   #DEPENDS system_lib
@@ -30,18 +30,28 @@ catkin_package(
 
 
 #インクルードするファイルの場所
-include_directories(include ${catkin_INCLUDE_DIRS}
-/usr/include/eigen3
+include_directories(
+  include
+  ${catkin_INCLUDE_DIRS}
 )
 
 #C++11の関数を使う用
 add_definitions(-std=c++11)
 
-#作成する実行プログラムの名前とソースの場所
-add_executable(tf_publisher_cpp src/tf_publisher.cpp)
-target_link_libraries(tf_publisher_cpp
+add_library(tf_common src/tf_common.cpp)
+target_link_libraries(tf_common
   ${catkin_LIBRARIES}
 )
+
+#作成する実行プログラムの名前とソースの場所
+add_executable(tf_copier src/tf_copier.cpp)
+#add_dependencies(tf_copier tf_common)
+target_link_libraries(tf_copier
+  tf_common
+  ${catkin_LIBRARIES}
+)
+
+
 
 #カスタムメッセージを利用するパッケージの依存性
 #add_dependencies(imu_node ${PROJECT_NAME}_generate_messages_cpp)
