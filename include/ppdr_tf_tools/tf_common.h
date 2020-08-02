@@ -10,8 +10,11 @@ namespace ppdr_tf_tools{
 
 class TFHandler{
 public:
+    geometry_msgs::TransformStamped _tf_stamped;
+
     TFHandler(){};
     geometry_msgs::TransformStamped get_tf(std::string parent_frame, std::string child_frame);
+    void send_tf(std::string parent_frame, std::string child_frame);
     void send_tf(geometry_msgs::TransformStamped tf_stamped, std::string parent_frame, std::string child_frame);
 
 };

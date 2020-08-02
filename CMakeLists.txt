@@ -51,7 +51,11 @@ target_link_libraries(tf_copier
   ${catkin_LIBRARIES}
 )
 
-
+add_executable(tf_fix src/tf_fix.cpp)
+target_link_libraries(tf_fix
+  tf_common
+  ${catkin_LIBRARIES}
+)
 
 #カスタムメッセージを利用するパッケージの依存性
 #add_dependencies(imu_node ${PROJECT_NAME}_generate_messages_cpp)
