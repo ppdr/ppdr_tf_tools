@@ -44,9 +44,9 @@ target_link_libraries(tf_common
 )
 
 #作成する実行プログラムの名前とソースの場所
-add_executable(tf_copier src/tf_copier.cpp)
-#add_dependencies(tf_copier tf_common)
-target_link_libraries(tf_copier
+add_executable(tf_copy src/tf_copy.cpp)
+#add_dependencies(tf_copy tf_common)
+target_link_libraries(tf_copy
   tf_common
   ${catkin_LIBRARIES}
 )
