@@ -7,6 +7,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
   tf
   tf2
 )
@@ -24,7 +25,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ppdr_tf_tools
-  CATKIN_DEPENDS roscpp std_msgs tf tf2
+  CATKIN_DEPENDS roscpp std_msgs geometry_msgs tf tf2
   #DEPENDS system_lib
 )
 
@@ -53,6 +54,18 @@ target_link_libraries(tf_copy
 
 add_executable(tf_fix src/tf_fix.cpp)
 target_link_libraries(tf_fix
+  tf_common
+  ${catkin_LIBRARIES}
+)
+
+add_executable(tf_to_pose src/tf_to_pose.cpp)
+target_link_libraries(tf_to_pose
+  tf_common
+  ${catkin_LIBRARIES}
+)
+
+add_executable(test_publish src/test_publish.cpp)
+target_link_libraries(test_publish
   tf_common
   ${catkin_LIBRARIES}
 )
