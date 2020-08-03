@@ -64,6 +64,12 @@ target_link_libraries(tf_to_pose
   ${catkin_LIBRARIES}
 )
 
+add_executable(tf_to_array src/tf_to_array.cpp)
+target_link_libraries(tf_to_array
+  tf_common
+  ${catkin_LIBRARIES}
+)
+
 add_executable(test_publish src/test_publish.cpp)
 target_link_libraries(test_publish
   tf_common
