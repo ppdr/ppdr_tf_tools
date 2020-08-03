@@ -31,10 +31,7 @@ int main(int argc, char** argv){
       ps.pose.position.x = tfs.transform.translation.x;
       ps.pose.position.y = tfs.transform.translation.y;
       ps.pose.position.z = tfs.transform.translation.z;
-      ps.pose.orientation.x = tfs.transform.rotation.x;
-      ps.pose.orientation.y = tfs.transform.rotation.y;
-      ps.pose.orientation.z = tfs.transform.rotation.z;
-      ps.pose.orientation.w = tfs.transform.rotation.w;
+      ps.pose.orientation = tfs.transform.rotation;
       pose_pub.publish(ps);
 
       rate.sleep();
