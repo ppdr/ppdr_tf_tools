@@ -5,7 +5,7 @@
 
 #include "tf_common.h"
 
-std::string source_parent, soucre_child;
+std::string source_parent, source_child;
 std::string new_parent, new_child;
 int loop_rate;
 

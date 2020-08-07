@@ -9,13 +9,13 @@ int main(int argc, char** argv){
   ros::NodeHandle nh("~");
 
   ppdr_tf_tools::TFHandler tf_handler;
-  std::string source_parent, soucre_child;
+  std::string source_parent, source_child;
   int loop_rate;
   double t = 0.0;
   double dt = 0.01;
   
   nh.param<std::string>("source_parent", source_parent, "map");
-  nh.param<std::string>("soucre_child",  soucre_child,  "odom");
+  nh.param<std::string>("source_child",  source_child,  "odom");
   nh.param("rate", loop_rate, 100);
   nh.param("dt", dt, 0.01);
 
@@ -37,7 +37,7 @@ int main(int argc, char** argv){
       tfs.transform.rotation.z = q.z();
       tfs.transform.rotation.w = q.w();
 
-      tf_handler.send_tf(tfs, source_parent, soucre_child);
+      tf_handler.send_tf(tfs, source_parent, source_child);
 
       t += dt;
       rate.sleep();

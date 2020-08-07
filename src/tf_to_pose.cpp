@@ -9,11 +9,11 @@ int main(int argc, char** argv){
   ros::NodeHandle nh("~");
 
   ppdr_tf_tools::TFHandler tf_handler;
-  std::string source_parent, soucre_child;
+  std::string source_parent, source_child;
   int loop_rate;
   
   nh.param<std::string>("source_parent", source_parent, "map");
-  nh.param<std::string>("soucre_child",  soucre_child,  "odom");
+  nh.param<std::string>("source_child",  source_child,  "odom");
   nh.param("rate", loop_rate, 100);
 
   ros::Publisher pose_pub = nh.advertise<geometry_msgs::PoseStamped>("pose_stamped", 1);
@@ -23,7 +23,7 @@ int main(int argc, char** argv){
   while(ros::ok()){
       ros::spinOnce();
 
-      geometry_msgs::TransformStamped tfs = tf_handler.get_tf(source_parent, soucre_child);
+      geometry_msgs::TransformStamped tfs = tf_handler.get_tf(source_parent, source_child);
       geometry_msgs::PoseStamped ps;
 
       ps.header.frame_id = source_parent;
