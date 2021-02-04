@@ -24,9 +24,9 @@ find_package(catkin REQUIRED COMPONENTS
 #インクルード
 catkin_package(
   INCLUDE_DIRS include
-  LIBRARIES ppdr_tf_tools
-  CATKIN_DEPENDS roscpp std_msgs geometry_msgs tf tf2
-  #DEPENDS system_lib
+  LIBRARIES ${PROJECT_NAME}
+  CATKIN_DEPENDS roscpp std_msgs geometry_msgs tf tf2 # ros libs
+  #DEPENDS system_lib # non-ros libs
 )
 
 
@@ -39,41 +39,51 @@ include_directories(
 #C++11の関数を使う用
 add_definitions(-std=c++11)
 
-add_library(tf_common src/tf_common.cpp)
-target_link_libraries(tf_common
+add_library(${PROJECT_NAME} src/tf_common.cpp)
+target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 #作成する実行プログラムの名前とソースの場所
 add_executable(tf_copy src/tf_copy.cpp)
-#add_dependencies(tf_copy tf_common)
 target_link_libraries(tf_copy
-  tf_common
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 add_executable(tf_fix src/tf_fix.cpp)
 target_link_libraries(tf_fix
-  tf_common
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 add_executable(tf_to_pose src/tf_to_pose.cpp)
 target_link_libraries(tf_to_pose
-  tf_common
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 add_executable(tf_to_array src/tf_to_array.cpp)
 target_link_libraries(tf_to_array
-  tf_common
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
 )
 
 add_executable(test_publish src/test_publish.cpp)
 target_link_libraries(test_publish
-  tf_common
+  ${PROJECT_NAME}
   ${catkin_LIBRARIES}
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
 )
 
 #カスタムメッセージを利用するパッケージの依存性
